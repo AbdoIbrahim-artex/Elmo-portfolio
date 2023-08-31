@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --mainColor: #446eff;
+        --secondaryColor: #cbd7ff;
+        --secondaryDarkColor: #f4f7ff;
+        --blackColor: #000000;
+        --darkColor: #2f2f2f;
+        --whiteColor: #ffffff;
+        --textColor: #575757;
+        --textDarkColor: #a1a1a1;
+        --borderColor: #a7a7a7;
+    }
+}
+
+/* main hero section */
+@layer components {
+    .heroSection {
+        @apply w-[97%] m-auto h-[95vh] mt-5 rounded-[20px] 
+        flex flex-col items-end justify-center 
+        relative overflow-hidden
+        bg-no-repeat dark:before:bg-gradient-to-l from-[#2f2f2f] from-70%  to-[#ffffff];
+    }
+    .heroSection::before {
+        display: block;
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        background-image: linear-gradient(
+            107.07deg,
+            #688aff 5.21%,
+            #f3f6ff 44.34%,
+            #f4f7ff 95.42%,
+            #ffffff 102.66%
+        );
+    }
+}
+
+/* footer */
+@layer components {
+    .footer {
+        @apply w-[97%] m-auto p-[40px] mb-5 rounded-[20px] bg-[var(--mainColor)] dark:bg-[var(--darkColor)] flex flex-col gap-[30px] relative;
+    }
+}
+
+/* navBar */
+@layer components {
+    .navBar {
+        @apply w-[100%] ml-auto mr-auto mt-[20px] 
+        z-[100] px-[50px] flex items-center flex-wrap 
+        gap-5 justify-between fixed top-5 left-0;
+    }
+    @media only screen and (max-width: 768px) {
+        .navBar .navWrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            position: fixed;
+            top: 0;
+            right: -200vw;
+            bottom: 0;
+            z-index: 1;
+            width: 300px;
+            height: 100vh !important;
+            padding: 100px 30px !important;
+            transition: right 700ms ease-in;
+            transition-delay: 400ms;
+            overflow: hidden;
+        }
+        .navBar .navWrapper nav {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: start;
+        }
+        .navBar .navWrapper::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            right: -200vw;
+            bottom: 0;
+            width: 300px;
+            height: 100%;
+            z-index: -1;
+            transition: right 500ms linear;
+            transition-delay: 550ms;
+        }
+        .navBar .navWrapper::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            right: -200vw;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-color: black;
+            opacity: 0.5;
+            transition: all 300ms cubic-bezier(0.55, 0.085, 0.68, 0.53);
+        }
+        .navBar .navWrapper.open {
+            right: 0;
+        }
+        .navBar .navWrapper.open::after,
+        .navBar .navWrapper.open::before {
+            right: 0;
+        }
+
+        .navWrapper .settings {
+            margin-top: 15px;
+        }
+        .navWrapper .settings .languages {
+            margin-left: 0px;
+        }
+    }
+    .navWrapper {
+        @apply after:bg-[var(--whiteColor)]
+        after:dark:bg-[var(--darkColor)];
+    }
+}
+
+/* global style */
+/* for button in navBar */
+@layer components {
+    .navBarBtn {
+        @apply py-[10px] 
+        px-[32px] rounded-[16px] border border-[var(--blackColor)] dark:border-[var(--whiteColor)] 
+        transition hover:bg-[var(--mainColor)] 
+        hover:text-[var(--whiteColor)]
+        hover:border-transparent;
+    }
+}
+
+/* for mainButton in app */
+@layer components {
+    .mainBtn {
+        @apply bg-[var(--mainColor)] rounded-[16px] py-[15px] 
+        mt-10 px-[48px] text-[var(--whiteColor)] font-baseFont
+        capitalize transition hover:bg-transparent border 
+        border-transparent hover:text-[var(--mainColor)] 
+        hover:border-[var(--mainColor)];
+    }
+}
+
+/* helper classes */
+.textWithDark {
+    @apply text-[24px] font-[400] font-baseFont leading-[29px] capitalize
+    text-[var(--textColor)] dark:text-[var(--textDarkColor)];
+}
+.titleWithDark {
+    @apply font-headingFont text-[24px]
+    font-[700] text-[var(--blackColor)] capitalize
+    dark:text-[var(--whiteColor)];
+}
