@@ -5,7 +5,7 @@ import { AnimatedText } from "../../shared";
 const HeroSection = () => {
     return (
         <div className="z-10">
-            <div className="heroSection bg-[url('./public/hero.png')] px-5">
+            <div className="heroSection bg-[url('../public/hero.png')] px-5">
                 {/* main content title */}
                 <div className="self-start md:self-end w-full md:w-[55%]">
                     <AnimatedText
